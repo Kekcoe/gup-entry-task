@@ -1,29 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.kekcoe</groupId>
-		<artifactId>test-task-gup</artifactId>
-		<version>1.0.0</version>
-	</parent>
-	<groupId>com.kekcoe</groupId>
-	<artifactId>quadratic-equation-solver</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>quadratic-equation-solver</name>
-	<description>quadratic-equation-solver</description>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.kekcoe</groupId>
+        <artifactId>test-task-gup</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <groupId>com.kekcoe</groupId>
+    <artifactId>quadratic-equation-solver</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>quadratic-equation-solver</name>
+    <description>quadratic-equation-solver</description>
 
-	<dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>1.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+    </dependencies>
 
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sources>${project.basedir}/src/main/resources/xsd</sources>
+                    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
