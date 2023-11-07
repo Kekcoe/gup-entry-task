@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://kekcoe.com/quadratic"
+        xmlns:tns="http://kekcoe.com/quadratic"
+        elementFormDefault="qualified">
+    <element name="quadraticEquationResponse" type="tns:QuadraticEquationResponse"/>
+    <complexType name="QuadraticEquationResponse">
+        <sequence>
+            <element name="formula" type="string" />
+            <element name="D" type="double" />
+            <element name="x1" type="double" />
+            <element name="x2" type="double" />
+        </sequence>
+    </complexType>
+</schema>

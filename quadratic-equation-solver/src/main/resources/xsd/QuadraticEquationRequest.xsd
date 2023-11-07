@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://kekcoe.com/quadratic"
+        xmlns:tns="http://kekcoe.com/quadratic"
+        elementFormDefault="qualified">
+    <element name="quadraticEquationRequest" type="tns:QuadraticEquationRequest"/>
+    <complexType name="QuadraticEquationRequest">
+        <sequence>
+            <element name="a" type="int" />
+            <element name="b" type="int" />
+            <element name="c" type="int" />
+        </sequence>
+    </complexType>
+</schema>

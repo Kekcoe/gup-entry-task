@@ -1,19 +1,34 @@
 package com.kekcoe.quadraticequationsolver.controller;
 
-import generated.Request;
-import generated.Response;
+import com.kekcoe.quadraticequationsolver.controller.impl.EquationEndpointImpl;
+import com.kekcoe.quadraticequationsolver.model.QuadraticEquationRequest;
+import com.kekcoe.quadraticequationsolver.model.QuadraticEquationResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+@Slf4j
 @Endpoint
 public class EquationEndpoint {
-    private static final String NAMESPACE_URI = "http://yourdomain.com";
-    @PayloadRoot(namespace = "http://yourdomain.com", localPart = "request")
-    @ResponsePayload
-    public Response solveEquation(@RequestPayload Request request) {
+    private final EquationEndpointImpl equationEndpointImpl;
 
-        return new Response();
+    @Autowired
+    public EquationEndpoint(EquationEndpointImpl equationEndpointImpl) {
+        this.equationEndpointImpl = equationEndpointImpl;
+    }
+
+    @PayloadRoot(namespace = "http://kekcoe.com/quadratic", localPart = "quadraticEquationRequest")
+    @ResponsePayload
+    public QuadraticEquationResponse solveEquation(@RequestPayload QuadraticEquationRequest request) {
+        log.info("****" + request);
+        try {
+            return equationEndpointImpl.solveEquation(request);
+        } catch (Exception e) {
+            log.error("Error: ", e);
+            return null;
+        }
     }
 }
