@@ -36,4 +36,8 @@
             <version>1.4.7</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>quadratic-equation-solver</finalName>
+    </build>
 </project>
