@@ -7,19 +7,14 @@
         <artifactId>test-task-gup</artifactId>
         <version>1.0.0</version>
     </parent>
-    <groupId>com.kekcoe</groupId>
+
     <artifactId>quadratic-equation-solver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>quadratic-equation-solver</name>
-    <description>quadratic-equation-solver</description>
+    <description>service fro solving quadratic equation</description>
 
     <dependencies>
-        <dependency>
-            <groupId>wsdl4j</groupId>
-            <artifactId>wsdl4j</artifactId>
-            <version>1.6.3</version>
-        </dependency>
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>

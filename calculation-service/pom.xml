@@ -7,10 +7,14 @@
 		<artifactId>test-task-gup</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	<groupId>com.kekcoe</groupId>
+
 	<artifactId>calculation-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>calculation-service</name>
-	<description>calculation-service</description>
+	<description>service that sending rest request for calculate quadratic equation </description>
+
+	<build>
+		<finalName>calculation-service</finalName>
+	</build>
 </project>
