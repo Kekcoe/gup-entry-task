@@ -58,7 +58,7 @@ public class SoapClientConfig {
     }
 
     @Bean
-    public DefaultWsdl11Definition defaultWsdl11Definition(@Value("${QUAD_SOLVER_SERVICE_URL}") String quadraticEquationSolverUrl, XsdSchema requestSchema2, XsdSchema responseSchema2) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(@Value("${quadratic.equation.solver.url}") String quadraticEquationSolverUrl, XsdSchema requestSchema2, XsdSchema responseSchema2) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("EquationPort");
         wsdl11Definition.setLocationUri(quadraticEquationSolverUrl);

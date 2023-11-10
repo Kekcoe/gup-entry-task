@@ -14,24 +14,6 @@
     <name>quadratic-equation-solver</name>
     <description>service fro solving quadratic equation</description>
 
-    <dependencies>
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.ws</groupId>
-            <artifactId>spring-xml</artifactId>
-            <version>3.1.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.ws.commons.schema</groupId>
-            <artifactId>XmlSchema</artifactId>
-            <version>1.4.7</version>
-        </dependency>
-    </dependencies>
-
     <build>
         <finalName>quadratic-equation-solver</finalName>
     </build>
