@@ -26,6 +26,9 @@ public class EquationEndpoint {
         log.info("****" + request);
         try {
             return equationEndpointImpl.solveEquation(request);
+        } catch (EquationEndpointImpl.DiscriminantException e) {
+            log.error("Error: ", e);
+            throw e;
         } catch (Exception e) {
             log.error("Error: ", e);
             return null;
