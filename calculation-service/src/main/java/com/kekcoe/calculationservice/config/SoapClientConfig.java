@@ -1,13 +1,15 @@
 package com.kekcoe.calculationservice.config;
 
+import com.kekcoe.calculationservice.binding.QuadraticEquationRequest;
+import com.kekcoe.calculationservice.soap_client.SoapClient;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
@@ -19,12 +21,23 @@ import org.springframework.xml.xsd.XsdSchema;
 @Slf4j
 public class SoapClientConfig {
 
+    @Value("${quadratic.equation.solver.url}") String quadraticEquationSolverUrl;
+
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(servlet, "/ws/equation2");
+        return new ServletRegistrationBean<>(servlet, "/ws/equation");
+    }
+
+    @Bean
+    public SoapClient soapClient (Jaxb2Marshaller marshaller) {
+        SoapClient soapClient = new SoapClient();
+        soapClient.setDefaultUri(quadraticEquationSolverUrl);
+        soapClient.setMarshaller(marshaller);
+        soapClient.setUnmarshaller(marshaller);
+        return soapClient;
     }
 
     @Bean
@@ -45,14 +58,19 @@ public class SoapClientConfig {
     }
 
     @Bean
-    public DefaultWsdl11Definition defaultWsdl11Definition2(XsdSchema requestSchema2, XsdSchema responseSchema2) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(@Value("${QUAD_SOLVER_SERVICE_URL}") String quadraticEquationSolverUrl, XsdSchema requestSchema2, XsdSchema responseSchema2) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("EquationPort2");
-        wsdl11Definition.setLocationUri("${quadratic.equation.solver}");
+        wsdl11Definition.setPortTypeName("EquationPort");
+        wsdl11Definition.setLocationUri(quadraticEquationSolverUrl);
         wsdl11Definition.setTargetNamespace("http://kekcoe.com/quadratic");
         wsdl11Definition.setSchema(requestSchema2);
         wsdl11Definition.setSchema(responseSchema2);
         return wsdl11Definition;
+    }
+
+    @Bean
+    public QuadraticEquationRequest quadraticEquationRequest() {
+        return new QuadraticEquationRequest();
     }
 
 }

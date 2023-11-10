@@ -16,9 +16,15 @@ public class CalcController {
     @Autowired
     private SoapClient soapClientService;
 
+    private final QuadraticEquationRequest request;
+
+    @Autowired
+    public CalcController(QuadraticEquationRequest request) {
+        this.request = request;
+    }
+
     @PostMapping("/api/calc")
     public QuadraticEquationResponse calculate(@RequestParam int a, @RequestParam int b, @RequestParam int c) {
-        QuadraticEquationRequest request = new QuadraticEquationRequest();
         request.setA(a);
         request.setB(b);
         request.setC(c);
